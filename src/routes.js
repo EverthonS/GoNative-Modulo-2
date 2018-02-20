@@ -1,9 +1,14 @@
+import React from 'react';
 import { StackNavigator, TabNavigator } from 'react-navigation';
 import Welcome from './pages/welcome' ;
-import Repositories from './pages/repositories'
-import Organizations from './pages/organizations'
+import Repositories from './pages/repositories';
+import Organizations from './pages/organizations';
+import HeaderRight from './components/HeaderRight';
+import {metrics} from './styles';
 
-const Routes = StackNavigator({
+
+const createNavigator = (isLogged = false) => 
+    StackNavigator({
 
     Welcome: { screen: Welcome },
     User:{ screen: TabNavigator({ 
@@ -13,8 +18,14 @@ const Routes = StackNavigator({
     },
 
 },{
-    initialRouteName: 'Welcome'
+    initialRouteName: isLogged ? 'User' : 'Welcome',
+    navigationOptions:{
+        headerStyle:{
+            paddingHorizontal: metrics.basePadding
+        },
+        headerRight: <HeaderRight/>,
+    }
   }
 );
 
-export default Routes;
+export default createNavigator;
