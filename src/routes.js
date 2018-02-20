@@ -19,12 +19,14 @@ const createNavigator = (isLogged = false) =>
 
 },{
     initialRouteName: isLogged ? 'User' : 'Welcome',
-    navigationOptions:{
-        headerStyle:{
-            paddingHorizontal: metrics.basePadding
-        },
-        headerRight: <HeaderRight/>,
-    }
+    navigationOptions: ({navigation}) => (
+        {
+            headerStyle:{
+                paddingHorizontal: metrics.basePadding
+            },
+            headerRight: <HeaderRight navigation={navigation} />,
+        }
+    )
   }
 );
 

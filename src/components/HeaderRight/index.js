@@ -1,12 +1,23 @@
 import React, { Component } from 'react';
-import { TouchableOpacity } from 'react-native';
+import { TouchableOpacity, AsyncStorage } from 'react-native';
+import {NavigationActions} from 'react-navigation'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Styles from './styles';
 
 export default class HeaderRight extends Component{
 
-    signOut = () => {
-        null
+    signOut = async () => {
+        await AsyncStorage.clear();
+
+        const resetAction = NavigationActions.reset({
+            index:0,
+            actions:[
+              NavigationActions.navigate({ routeName: 'Welcome' })
+            ]
+          })
+
+          this.props.navigation.dispatch(resetAction);
+
     }
 
     render(){
