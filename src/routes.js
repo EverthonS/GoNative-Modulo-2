@@ -34,6 +34,10 @@ const createNavigator = (isLogged = false) =>
 
 },{
     initialRouteName: isLogged ? 'User' : 'Welcome',
+    
+    // o navigationOptions precisou ser transformado em função pra que pudesse ser usado no component 
+    //HeaderRight que não faz parte das rotas criadas. Assim, podemos passar o parametro navigation como propriedade
+    // para o HeaderRight no momento de renderiza-lo. Ver abaixo >>
     navigationOptions: ({navigation}) => (
         {
             headerStyle:{
